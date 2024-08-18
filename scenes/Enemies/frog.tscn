@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://bassecsp24nnh"]
+
+[ext_resource type="Script" path="res://scripts/Enemies/Frog/frog.gd" id="1_8nvlr"]
+[ext_resource type="Texture2D" uid="uid://080xma6bsq5t" path="res://Assets/Packs/Sunnyland/sprites/frog/jump/frog-jump-2.png" id="2_vy0ro"]
+[ext_resource type="Texture2D" uid="uid://bu0kdpdv44xnb" path="res://Assets/Packs/Sunnyland/sprites/frog/idle/frog-idle-1.png" id="3_h5mrn"]
+[ext_resource type="Texture2D" uid="uid://cdw8ymb2biwb7" path="res://Assets/Packs/Sunnyland/sprites/frog/idle/frog-idle-2.png" id="4_wgv5p"]
+[ext_resource type="Texture2D" uid="uid://duxtgjtsm5nrh" path="res://Assets/Packs/Sunnyland/sprites/frog/idle/frog-idle-3.png" id="5_33guf"]
+[ext_resource type="Texture2D" uid="uid://igaq13rc3vgf" path="res://Assets/Packs/Sunnyland/sprites/frog/idle/frog-idle-4.png" id="6_gls1r"]
+[ext_resource type="Texture2D" uid="uid://mn7pjeerxvl3" path="res://Assets/Packs/Sunnyland/sprites/frog/jump/frog-jump-1.png" id="7_f73mj"]
+[ext_resource type="Script" path="res://scripts/Enemies/enemy_state_machine.gd" id="8_wsaes"]
+[ext_resource type="Script" path="res://scripts/Enemies/Frog/States/frog_idle.gd" id="9_8f0a7"]
+[ext_resource type="Script" path="res://scripts/Enemies/Frog/States/frog_jumping.gd" id="10_21als"]
+[ext_resource type="Script" path="res://scripts/Enemies/Frog/States/frog_falling.gd" id="11_dseit"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ucxif"]
+height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fnsej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vy0ro")
+}],
+"loop": true,
+"name": &"Falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("3_h5mrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wgv5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_33guf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gls1r")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_f73mj")
+}],
+"loop": true,
+"name": &"Jumping",
+"speed": 5.0
+}]
+
+[node name="Frog" type="CharacterBody2D"]
+script = ExtResource("1_8nvlr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ucxif")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fnsej")
+animation = &"Idle"
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("8_wsaes")
+log_state_transition = true
+
+[node name="Idle" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("9_8f0a7")
+
+[node name="Jumping" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("10_21als")
+
+[node name="Falling" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("11_dseit")

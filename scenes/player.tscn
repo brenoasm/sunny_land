@@ -1,0 +1,156 @@
+[gd_scene load_steps=28 format=3 uid="uid://2i8jubglwpoi"]
+
+[ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_1ejx3"]
+[ext_resource type="Texture2D" uid="uid://buvo8nxgeb71a" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-1.png" id="2_6gqi5"]
+[ext_resource type="Texture2D" uid="uid://df2ihl8va02" path="res://Assets/Packs/Sunnyland/sprites/player/climb/player-climb-1.png" id="2_tymr5"]
+[ext_resource type="Texture2D" uid="uid://crbasevqd33k3" path="res://Assets/Packs/Sunnyland/sprites/player/climb/player-climb-2.png" id="3_7lrp0"]
+[ext_resource type="Texture2D" uid="uid://n6t213bpnqrv" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-2.png" id="3_62rup"]
+[ext_resource type="Texture2D" uid="uid://dmshif1pgf8rq" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-3.png" id="4_07ndu"]
+[ext_resource type="Texture2D" uid="uid://bpcjknaweoil1" path="res://Assets/Packs/Sunnyland/sprites/player/climb/player-climb-3.png" id="4_butdf"]
+[ext_resource type="Texture2D" uid="uid://da1n3gnnbix0j" path="res://Assets/Packs/Sunnyland/sprites/player/crouch/player-crouch-1.png" id="5_10uod"]
+[ext_resource type="Texture2D" uid="uid://b3shuu6fj5kjp" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-4.png" id="5_gkfwk"]
+[ext_resource type="Texture2D" uid="uid://ce1xy727tkuaf" path="res://Assets/Packs/Sunnyland/sprites/player/crouch/player-crouch-2.png" id="6_6vwp5"]
+[ext_resource type="Texture2D" uid="uid://4d37j63gteup" path="res://Assets/Packs/Sunnyland/sprites/player/hurt/player-hurt-1.png" id="7_cp6hc"]
+[ext_resource type="Texture2D" uid="uid://bjeool2ym2eba" path="res://Assets/Packs/Sunnyland/sprites/player/hurt/player-hurt-2.png" id="8_tndvr"]
+[ext_resource type="Texture2D" uid="uid://c0ej4p3mjs6kj" path="res://Assets/Packs/Sunnyland/sprites/player/jump/player-jump-1.png" id="13_4xbbu"]
+[ext_resource type="Texture2D" uid="uid://cawwfkyal7v70" path="res://Assets/Packs/Sunnyland/sprites/player/jump/player-jump-2.png" id="14_k50ao"]
+[ext_resource type="Texture2D" uid="uid://bauaynkutkfuo" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-1.png" id="15_k3h7w"]
+[ext_resource type="Texture2D" uid="uid://em1ce4as4qw7" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-2.png" id="16_faxn5"]
+[ext_resource type="Texture2D" uid="uid://cwmadygg6g015" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-3.png" id="17_cq15p"]
+[ext_resource type="Texture2D" uid="uid://0dap45p0tjma" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-4.png" id="18_1qroo"]
+[ext_resource type="Texture2D" uid="uid://drbr0br40mxy2" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-5.png" id="19_timjc"]
+[ext_resource type="Texture2D" uid="uid://bnstce2wk3kww" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-6.png" id="20_cfqvn"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_state_machine.gd" id="21_cwfjb"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_idle.gd" id="22_h6556"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_moving.gd" id="23_pb7fr"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_jumping.gd" id="24_6bulw"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_falling.gd" id="25_g30nj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wnecl"]
+radius = 8.0
+height = 24.34
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_be77h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tymr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7lrp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_butdf")
+}],
+"loop": true,
+"name": &"Climbing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_10uod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6vwp5")
+}],
+"loop": true,
+"name": &"Crouching",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_k50ao")
+}],
+"loop": true,
+"name": &"Falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cp6hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tndvr")
+}],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6gqi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_62rup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_07ndu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gkfwk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_4xbbu")
+}],
+"loop": true,
+"name": &"Jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_k3h7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_faxn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_cq15p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1qroo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_timjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_cfqvn")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_1ejx3")
+movement_speed = 250.0
+jump_movement_speed = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.84)
+shape = SubResource("CapsuleShape2D_wnecl")
+debug_color = Color(0.972409, 0.141243, 0.226641, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_be77h")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("21_cwfjb")
+
+[node name="Idle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("22_h6556")
+
+[node name="Moving" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("23_pb7fr")
+
+[node name="Jumping" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("24_6bulw")
+
+[node name="Falling" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("25_g30nj")
