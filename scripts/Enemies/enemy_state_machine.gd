@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	current_state.physics_update(delta)
 	
-func _transition_to_next_state(next_state: String, data: Dictionary) -> void:
+func transition_to_next_state(next_state: String, data: Dictionary) -> void:
 	var previous_state_name = current_state.name
 	current_state.exit()
 	
@@ -25,7 +25,7 @@ func _transition_to_next_state(next_state: String, data: Dictionary) -> void:
 func _loadStates() -> void:
 	for state_node: EnemyState in find_children("*", "EnemyState"):
 		state_node.initialize(self)
-		state_node.finished.connect(_transition_to_next_state)
+		state_node.finished.connect(transition_to_next_state)
 		
 		if current_state == null:
 			current_state = state_node

@@ -455,8 +455,17 @@ centered = false
 [node name="Frog" parent="Enemies" instance=ExtResource("1_vvjop")]
 position = Vector2(236, 116)
 
+[node name="Frog2" parent="Enemies" instance=ExtResource("1_vvjop")]
+position = Vector2(309, 118)
+
+[node name="Frog3" parent="Enemies" instance=ExtResource("1_vvjop")]
+position = Vector2(408, 117)
+
+[node name="Frog4" parent="Enemies" instance=ExtResource("1_vvjop")]
+position = Vector2(466, 116)
+
 [node name="Player" parent="." instance=ExtResource("3_vm0hs")]
-position = Vector2(152, 112)
+position = Vector2(82, 112)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2.5, 2.5)

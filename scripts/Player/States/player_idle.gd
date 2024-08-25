@@ -13,8 +13,4 @@ func physics_update(delta: float) -> void:
 func enter(previous_state: String, data: Dictionary) -> void:
 	super(previous_state, data)
 	
-	player.animation_player.play("Idle")
-	
-	player.apply_x_velocity(0)
-	
-	player.move_and_slide()
+	player.animation_player.playIdleAnimation()

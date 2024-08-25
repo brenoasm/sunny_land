@@ -33,3 +33,6 @@ func _loadStates() -> void:
 	await owner.ready
 	
 	current_state.enter("", {})
+
+func can_hit_enemy() -> bool:
+	return current_state is PlayerFalling

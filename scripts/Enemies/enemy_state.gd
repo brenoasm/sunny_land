@@ -2,6 +2,8 @@ extends State
 
 class_name EnemyState
 
+const DYING = "Dying"
+
 var enemy: Enemy
 var state_machine: EnemyStateMachine
 
@@ -19,16 +21,16 @@ func initialize(state_machine: EnemyStateMachine) -> void:
 func update(delta: float) -> void:
 	pass
 
-@warning_ignore("unused_parameter")
 func physics_update(delta: float) -> void:
-	pass
+	if enemy != null and not enemy.is_on_floor():
+		enemy.apply_y_velocity(enemy.velocity.y + enemy.gravity * delta)
 	
 func enter(previous_state: String, data: Dictionary) -> void:
+	timer = 0
+	
 	if state_machine.log_state_transition:
 		print("Entering " + self.name + " state")
 	
-func exit() -> void:
-	timer = 0
-	
+func exit() -> void:	
 	if state_machine.log_state_transition:
 		print("Leaving " + self.name + " state")

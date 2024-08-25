@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://2i8jubglwpoi"]
+[gd_scene load_steps=32 format=3 uid="uid://2i8jubglwpoi"]
 
 [ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_1ejx3"]
 [ext_resource type="Texture2D" uid="uid://buvo8nxgeb71a" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-1.png" id="2_6gqi5"]
+[ext_resource type="Script" path="res://scripts/Player/player_collision.gd" id="2_kycny"]
 [ext_resource type="Texture2D" uid="uid://df2ihl8va02" path="res://Assets/Packs/Sunnyland/sprites/player/climb/player-climb-1.png" id="2_tymr5"]
 [ext_resource type="Texture2D" uid="uid://crbasevqd33k3" path="res://Assets/Packs/Sunnyland/sprites/player/climb/player-climb-2.png" id="3_7lrp0"]
 [ext_resource type="Texture2D" uid="uid://n6t213bpnqrv" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-2.png" id="3_62rup"]
@@ -21,14 +22,16 @@
 [ext_resource type="Texture2D" uid="uid://drbr0br40mxy2" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-5.png" id="19_timjc"]
 [ext_resource type="Texture2D" uid="uid://bnstce2wk3kww" path="res://Assets/Packs/Sunnyland/sprites/player/run/player-run-6.png" id="20_cfqvn"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_state_machine.gd" id="21_cwfjb"]
+[ext_resource type="Script" path="res://scripts/Player/player_animation.gd" id="21_khnir"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_idle.gd" id="22_h6556"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_moving.gd" id="23_pb7fr"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_jumping.gd" id="24_6bulw"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_falling.gd" id="25_g30nj"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_hurt.gd" id="26_wvaxf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wnecl"]
-radius = 8.0
-height = 24.34
+radius = 9.0
+height = 24.32
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_be77h"]
 animations = [{
@@ -74,7 +77,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Hurt",
-"speed": 5.0
+"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,20 +128,34 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_1ejx3")
-movement_speed = 250.0
-jump_movement_speed = 200.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqxor"]
+size = Vector2(13.125, 14.6394)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_1ejx3")
+
+[node name="physics_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.84)
 shape = SubResource("CapsuleShape2D_wnecl")
 debug_color = Color(0.972409, 0.141243, 0.226641, 0.42)
+script = ExtResource("2_kycny")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_be77h")
-animation = &"Idle"
+animation = &"Falling"
 autoplay = "Idle"
+script = ExtResource("21_khnir")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="offensive_hitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2.38419e-07, 18)
+scale = Vector2(1.06667, 0.322857)
+shape = SubResource("RectangleShape2D_yqxor")
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("21_cwfjb")
@@ -146,11 +163,17 @@ script = ExtResource("21_cwfjb")
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("22_h6556")
 
+[node name="Falling" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("25_g30nj")
+
 [node name="Moving" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("23_pb7fr")
 
 [node name="Jumping" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("24_6bulw")
 
-[node name="Falling" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("25_g30nj")
+[node name="Hurt" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("26_wvaxf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -3,9 +3,9 @@ class_name FrogIdle
 
 func physics_update(delta: float) -> void:
 	super(delta)
-	#
-	#frog.apply_x_velocity(0)
-	#frog.move_and_slide()
+	
+	frog.apply_x_velocity(0)
+	frog.move_and_slide()
 	
 	timer -= delta
 	
@@ -15,9 +15,6 @@ func physics_update(delta: float) -> void:
 func enter(previous_state: String, data: Dictionary) -> void:
 	super(previous_state, data)
 	
-	timer = 5
+	timer = frog.jump_delay
 	
-	frog.animation_player.play("Idle")
-	
-	frog.apply_x_velocity(0)
-	frog.move_and_slide()
+	frog.animation_player.playIdleAnimation()
