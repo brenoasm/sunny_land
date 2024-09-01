@@ -13,8 +13,8 @@ func physics_update(delta: float) -> void:
 		
 		return
 		
-	if player.direction_x:
-		player.apply_x_velocity(player.direction_x * player.jump_movement_speed)
+	if player.input.direction_x:
+		player.input.apply_x_velocity(player.input.direction_x * player.jump_movement_speed)
 		
 func enter(previous_state: String, data: Dictionary) -> void:
 	super(previous_state, data)

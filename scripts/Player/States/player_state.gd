@@ -6,7 +6,7 @@ const MOVING = "Moving"
 const IDLE = "Idle"
 const JUMPING = "Jumping"
 const FALLING = "Falling"
-const HURT = "Hurt"
+const DYING = "Dying"
 
 var player: Player
 var state_machine: PlayerStateMachine
@@ -25,7 +25,6 @@ func initialize(state_machine: PlayerStateMachine) -> void:
 func update(delta: float) -> void:
 	pass
 
-@warning_ignore("unused_parameter")
 func physics_update(delta: float) -> void:
 	if player.velocity.y > 0 and state_machine.current_state is not PlayerFalling:
 		finished.emit(FALLING, {})
@@ -33,19 +32,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(JUMPING, {})
 		
 	if not player.is_on_floor():
-		player.apply_y_velocity(player.velocity.y + player.gravity * delta)
-		
-	if player.input_enabled:
-		for index in player.get_slide_collision_count():
-			var collision := player.get_slide_collision(index)
-			var body = collision.get_collider()
-			
-			if body is Enemy:
-				var collision_normal = collision.get_normal()
-				
-				finished.emit(HURT, {
-					"collision_normal": collision_normal
-				})
+		player.input.apply_y_velocity(player.velocity.y + player.gravity * delta)
 				
 	
 func enter(previous_state: String, data: Dictionary) -> void:

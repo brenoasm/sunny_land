@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://chowfia0h5de8"]
+
+[ext_resource type="Script" path="res://scripts/Collectable/gem.gd" id="1_5pvwy"]
+[ext_resource type="Texture2D" uid="uid://duk3ecw2pul7h" path="res://Assets/Packs/Sunnyland/sprites/gem/gem-1.png" id="1_jioko"]
+[ext_resource type="Texture2D" uid="uid://cu5l1a243cp4d" path="res://Assets/Packs/Sunnyland/sprites/item-feedback/item-feedback-1.png" id="1_qalr7"]
+[ext_resource type="Texture2D" uid="uid://dfd1chaf3nbqu" path="res://Assets/Packs/Sunnyland/sprites/item-feedback/item-feedback-2.png" id="2_ogr2w"]
+[ext_resource type="Texture2D" uid="uid://j8k3a85iwufy" path="res://Assets/Packs/Sunnyland/sprites/gem/gem-2.png" id="2_yto7m"]
+[ext_resource type="Texture2D" uid="uid://bit83oi7dngnj" path="res://Assets/Packs/Sunnyland/sprites/item-feedback/item-feedback-3.png" id="3_pa6m5"]
+[ext_resource type="Texture2D" uid="uid://csnmke43i0nf4" path="res://Assets/Packs/Sunnyland/sprites/gem/gem-3.png" id="3_uttda"]
+[ext_resource type="Texture2D" uid="uid://81ady6vkyd43" path="res://Assets/Packs/Sunnyland/sprites/item-feedback/item-feedback-4.png" id="4_04e1w"]
+[ext_resource type="Texture2D" uid="uid://dx1f65m8sq4tb" path="res://Assets/Packs/Sunnyland/sprites/gem/gem-4.png" id="4_ogpmr"]
+[ext_resource type="Texture2D" uid="uid://cs7t1pmw2bjh0" path="res://Assets/Packs/Sunnyland/sprites/gem/gem-5.png" id="5_245hr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yncqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qalr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ogr2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pa6m5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_04e1w")
+}],
+"loop": false,
+"name": &"Collecting",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jioko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yto7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uttda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ogpmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_245hr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0wgd8"]
+radius = 6.0208
+
+[node name="Gem" type="Area2D" node_paths=PackedStringArray("animation_player")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_5pvwy")
+animation_player = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yncqu")
+animation = &"Collecting"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_0wgd8")
+debug_color = Color(0.229615, 0.633609, 0.217297, 0.42)

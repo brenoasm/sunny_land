@@ -5,6 +5,14 @@ class_name Enemy
 @export var movement_speed = 30
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _physics_process(delta: float) -> void:
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var body = collision.get_collider()
+		
+		if body is Player:
+			body.kill()
 #
 func apply_x_velocity(xVelocity: float) -> void:
 	velocity.x = xVelocity

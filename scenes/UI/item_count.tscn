@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://48a3insycacq"]
+
+[ext_resource type="Script" path="res://scripts/UI/item_count.gd" id="1_6lqwf"]
+[ext_resource type="Texture2D" uid="uid://duk3ecw2pul7h" path="res://Assets/Packs/Sunnyland/sprites/gem/gem-1.png" id="1_cuqgu"]
+
+[node name="ItemCount" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6lqwf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="Item" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_cuqgu")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "0"

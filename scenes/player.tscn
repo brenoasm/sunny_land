@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://2i8jubglwpoi"]
+[gd_scene load_steps=37 format=3 uid="uid://2i8jubglwpoi"]
 
 [ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_1ejx3"]
 [ext_resource type="Texture2D" uid="uid://buvo8nxgeb71a" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-1.png" id="2_6gqi5"]
@@ -25,9 +25,13 @@
 [ext_resource type="Script" path="res://scripts/Player/player_animation.gd" id="21_khnir"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_idle.gd" id="22_h6556"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_moving.gd" id="23_pb7fr"]
+[ext_resource type="Script" path="res://scripts/Player/player_offensive_area.gd" id="23_towy0"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_jumping.gd" id="24_6bulw"]
+[ext_resource type="Script" path="res://scripts/Player/player_collectable_area.gd" id="24_ei36t"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_falling.gd" id="25_g30nj"]
-[ext_resource type="Script" path="res://scripts/Player/States/player_hurt.gd" id="26_wvaxf"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_dying.gd" id="26_wvaxf"]
+[ext_resource type="Script" path="res://scripts/Player/player_camera_visibility_notifier.gd" id="31_hscjk"]
+[ext_resource type="Script" path="res://scripts/Player/player_input.gd" id="32_ry7qn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wnecl"]
 radius = 9.0
@@ -61,23 +65,23 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 2.0,
+"texture": ExtResource("7_cp6hc")
+}, {
+"duration": 2.0,
+"texture": ExtResource("8_tndvr")
+}],
+"loop": true,
+"name": &"Dying",
+"speed": 2.5
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("14_k50ao")
 }],
 "loop": true,
 "name": &"Falling",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_cp6hc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_tndvr")
-}],
-"loop": true,
-"name": &"Hurt",
-"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -131,31 +135,47 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqxor"]
 size = Vector2(13.125, 14.6394)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8fi7"]
+radius = 11.0454
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 8
 script = ExtResource("1_1ejx3")
 
-[node name="physics_hitbox" type="CollisionShape2D" parent="."]
+[node name="PhysicsHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.84)
 shape = SubResource("CapsuleShape2D_wnecl")
 debug_color = Color(0.972409, 0.141243, 0.226641, 0.42)
 script = ExtResource("2_kycny")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_be77h")
-animation = &"Falling"
+animation = &"Dying"
 autoplay = "Idle"
 script = ExtResource("21_khnir")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="OffensiveArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
+script = ExtResource("23_towy0")
 
-[node name="offensive_hitbox" type="CollisionShape2D" parent="Area2D"]
+[node name="OffensiveHitbox" type="CollisionShape2D" parent="OffensiveArea"]
 position = Vector2(2.38419e-07, 18)
 scale = Vector2(1.06667, 0.322857)
 shape = SubResource("RectangleShape2D_yqxor")
+
+[node name="CollectableArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("24_ei36t")
+
+[node name="CollectableHitbox" type="CollisionShape2D" parent="CollectableArea"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_e8fi7")
+debug_color = Color(0.203001, 0.631424, 0.320713, 0.42)
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("21_cwfjb")
@@ -172,8 +192,15 @@ script = ExtResource("23_pb7fr")
 [node name="Jumping" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("24_6bulw")
 
-[node name="Hurt" type="Node" parent="PlayerStateMachine"]
+[node name="Dying" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("26_wvaxf")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="CameraVisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+script = ExtResource("31_hscjk")
+
+[node name="Input" type="Node2D" parent="."]
+script = ExtResource("32_ry7qn")
+
+[connection signal="body_entered" from="OffensiveArea" to="OffensiveArea" method="_on_body_entered"]
+[connection signal="area_entered" from="CollectableArea" to="CollectableArea" method="_on_area_entered"]
+[connection signal="screen_exited" from="CameraVisibilityNotifier" to="CameraVisibilityNotifier" method="_on_screen_exited"]

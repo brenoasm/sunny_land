@@ -4,8 +4,8 @@ class_name PlayerMoving
 func physics_update(delta: float) -> void:
 	super(delta)
 	
-	if player.direction_x:
-		player.apply_x_velocity(player.direction_x * player.movement_speed)
+	if player.input.is_pressing_move():
+		player.input.apply_x_velocity(player.input.direction_x * player.movement_speed)
 		player.move_and_slide()
 	else:
 		finished.emit(IDLE, {})

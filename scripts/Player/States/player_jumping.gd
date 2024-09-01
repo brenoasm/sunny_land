@@ -11,5 +11,5 @@ func enter(previous_state: String, data: Dictionary) -> void:
 	
 	player.animation_player.playJumpingAnimation()
 	
-	player.apply_y_velocity(player.jump_velocity)
+	player.input.apply_y_velocity(player.jump_velocity)
 	

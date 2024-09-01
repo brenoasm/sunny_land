@@ -5,7 +5,7 @@ enum PlayerAnimations {
 	Falling,
 	Jumping,
 	Idle,
-	Hurt,
+	Dying,
 	Moving
 }
 
@@ -27,9 +27,12 @@ func playMovingAnimation() -> void:
 	currentAnimation = PlayerAnimations.Moving
 	play("Moving")
 	
-func playHurtAnimation() -> void:
-	currentAnimation = PlayerAnimations.Hurt
-	play("Hurt")
+func playDyingAnimation() -> void:
+	currentAnimation = PlayerAnimations.Dying
+	play("Dying")
 
 func applyAlpha(a: float) -> void:
 	self_modulate.a = a
+
+func flip(value: bool) -> void:
+	flip_h = value

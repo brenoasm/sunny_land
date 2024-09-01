@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bassecsp24nnh"]
+[gd_scene load_steps=24 format=3 uid="uid://bassecsp24nnh"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/Frog/frog.gd" id="1_8nvlr"]
 [ext_resource type="Texture2D" uid="uid://l44a3m67rs0f" path="res://Assets/Packs/Sunnyland/sprites/enemy-death/enemy-death-1.png" id="2_apjfv"]
@@ -83,14 +83,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8cbb"]
+
 [node name="Frog" type="CharacterBody2D"]
 disable_mode = 2
 collision_layer = 2
 script = ExtResource("1_8nvlr")
 jump_velocity = -300.0
-movement_speed = 20
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicsHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ucxif")
 script = ExtResource("2_kirc7")
@@ -114,3 +115,13 @@ script = ExtResource("11_dseit")
 
 [node name="Dying" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("20_7pvou")
+
+[node name="OffensiveArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="OffensiveHitbox" type="CollisionShape2D" parent="OffensiveArea"]
+shape = SubResource("CircleShape2D_i8cbb")
+debug_color = Color(0.948885, 0.184635, 0.342292, 0.42)
+
+[connection signal="body_entered" from="OffensiveArea" to="." method="_on_offensive_area_body_entered"]

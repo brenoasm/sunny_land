@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvg6arprs6dcl"]
+
+[ext_resource type="Script" path="res://scripts/UI/ui.gd" id="1_lsnho"]
+[ext_resource type="PackedScene" uid="uid://daudhn6t0walx" path="res://scenes/UI/gem_count.tscn" id="2_is0l0"]
+
+[node name="ScoreUI" type="CanvasLayer"]
+scale = Vector2(2.5, 2.5)
+transform = Transform2D(2.5, 0, 0, 2.5, 0, 0)
+script = ExtResource("1_lsnho")
+
+[node name="GemCount" parent="." instance=ExtResource("2_is0l0")]

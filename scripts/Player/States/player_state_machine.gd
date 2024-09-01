@@ -15,6 +15,9 @@ func _physics_process(delta: float) -> void:
 	current_state.physics_update(delta)
 	
 func _transition_to_next_state(next_state: String, data: Dictionary) -> void:
+	if current_state is PlayerDying:
+		return
+		
 	var previous_state_name = current_state.name
 	current_state.exit()
 	
@@ -36,3 +39,6 @@ func _loadStates() -> void:
 
 func can_hit_enemy() -> bool:
 	return current_state is PlayerFalling
+
+func go_to_dying_state() -> void:
+	_transition_to_next_state(current_state.DYING, {})

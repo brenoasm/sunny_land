@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://daudhn6t0walx"]
+
+[ext_resource type="PackedScene" uid="uid://48a3insycacq" path="res://scenes/UI/item_count.tscn" id="1_jkan6"]
+[ext_resource type="Texture2D" uid="uid://duk3ecw2pul7h" path="res://Assets/Packs/Sunnyland/sprites/gem/gem-1.png" id="2_6wtak"]
+
+[node name="GemCount" instance=ExtResource("1_jkan6")]
+item_texture = ExtResource("2_6wtak")
+initial_text = "0"
