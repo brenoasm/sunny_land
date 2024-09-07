@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://kqphwcyexxlb"
+path="res://.godot/imported/Blip4.wav-ffc303ee1ac7de653ca6a4e12b35023f.sample"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Blip/WAV/Blip4.wav"
+dest_files=["res://.godot/imported/Blip4.wav-ffc303ee1ac7de653ca6a4e12b35023f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

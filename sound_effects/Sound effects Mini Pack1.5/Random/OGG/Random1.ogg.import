@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cq4y6jd6rrsgm"
+path="res://.godot/imported/Random1.ogg-498ae335fa47aa7f8de76a318ce3ce0a.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Random/OGG/Random1.ogg"
+dest_files=["res://.godot/imported/Random1.ogg-498ae335fa47aa7f8de76a318ce3ce0a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

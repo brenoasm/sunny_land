@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfo0a1ynsrbcm"]
+
+[ext_resource type="Script" path="res://scripts/Managers/enemies_manager.gd" id="1_3cp1c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_koiac"]
+size = Vector2(629, 288)
+
+[node name="EnemiesManager" type="Node"]
+script = ExtResource("1_3cp1c")
+
+[node name="ControlArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ControlArea"]
+position = Vector2(304.5, 134)
+shape = SubResource("RectangleShape2D_koiac")
+debug_color = Color(0.52549, 0.47451, 0.843137, 0.0588235)

@@ -13,5 +13,4 @@ func _on_area_entered(area: Area2D) -> void:
 		if not area.can_be_collected:
 			return
 			
-		player.collected.emit(area)
 		area.collect()

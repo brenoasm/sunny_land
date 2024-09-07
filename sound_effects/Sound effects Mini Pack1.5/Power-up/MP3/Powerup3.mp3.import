@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4ndmldj7ov5"
+path="res://.godot/imported/Powerup3.mp3-0709da4e0bd212d6ce90ea03b4f648a0.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Power-up/MP3/Powerup3.mp3"
+dest_files=["res://.godot/imported/Powerup3.mp3-0709da4e0bd212d6ce90ea03b4f648a0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

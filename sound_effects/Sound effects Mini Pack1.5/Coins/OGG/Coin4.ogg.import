@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b10w0024nl5c0"
+path="res://.godot/imported/Coin4.ogg-a5df48a8569ffe2bc32f854cf648716a.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Coins/OGG/Coin4.ogg"
+dest_files=["res://.godot/imported/Coin4.ogg-a5df48a8569ffe2bc32f854cf648716a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bnm7rtrgeu8uj"
+path="res://.godot/imported/Jump1.mp3-a3bd5ccc4f16268aec1c25825ef5d776.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Jump/MP3/Jump1.mp3"
+dest_files=["res://.godot/imported/Jump1.mp3-a3bd5ccc4f16268aec1c25825ef5d776.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

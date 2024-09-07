@@ -2,7 +2,9 @@ extends PlayerAir
 class_name PlayerFalling
 
 func _on_enemy_hit(enemy: Enemy) -> void:
-	finished.emit(JUMPING, {})
+	finished.emit(JUMPING, {
+		'hit': true
+	})
 
 func physics_update(delta: float) -> void:
 	super(delta)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1c5iji4v7ens"]
+
+[ext_resource type="PackedScene" uid="uid://l66ofcgc21wt" path="res://scenes/General/spawn_point.tscn" id="1_2xw2n"]
+[ext_resource type="Script" path="res://scripts/General/enemy_spawn_point.gd" id="2_m5jc5"]
+[ext_resource type="PackedScene" uid="uid://bassecsp24nnh" path="res://scenes/Enemies/frog.tscn" id="3_rqj0i"]
+
+[node name="EnemySpawnPoint" instance=ExtResource("1_2xw2n")]
+collision_layer = 16
+script = ExtResource("2_m5jc5")
+enemy_scene = ExtResource("3_rqj0i")
+once = false

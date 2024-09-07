@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://puje4xr0jfjq"]
+
+[ext_resource type="Script" path="res://scripts/Managers/collectables_manager.gd" id="1_4ammo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88xwy"]
+size = Vector2(629, 386)
+
+[node name="CollectablesManager" type="Node"]
+script = ExtResource("1_4ammo")
+
+[node name="ControlArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ControlArea"]
+position = Vector2(304.5, 183)
+shape = SubResource("RectangleShape2D_88xwy")
+debug_color = Color(0.742042, 0.442096, 0.399412, 0.42)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b3bj8ox3373s"
+path="res://.godot/imported/Powerup1.wav-f3e2708aa5360fbbfb86cc05ab8ab66f.sample"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Power-up/WAV/Powerup1.wav"
+dest_files=["res://.godot/imported/Powerup1.wav-f3e2708aa5360fbbfb86cc05ab8ab66f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

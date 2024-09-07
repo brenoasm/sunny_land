@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://csfv1dxe71baj"
+path="res://.godot/imported/Coin3.mp3-eb49f266954f9d73a51561b81b9a37e0.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Coins/MP3/Coin3.mp3"
+dest_files=["res://.godot/imported/Coin3.mp3-eb49f266954f9d73a51561b81b9a37e0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

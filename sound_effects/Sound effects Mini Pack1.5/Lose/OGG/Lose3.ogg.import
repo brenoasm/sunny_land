@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cwj1opq3ad65c"
+path="res://.godot/imported/Lose3.ogg-9bb00f3096feb8c681561e01ed272142.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Lose/OGG/Lose3.ogg"
+dest_files=["res://.godot/imported/Lose3.ogg-9bb00f3096feb8c681561e01ed272142.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

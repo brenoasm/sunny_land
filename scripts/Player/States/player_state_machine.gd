@@ -23,6 +23,8 @@ func _transition_to_next_state(next_state: String, data: Dictionary) -> void:
 	
 	current_state = get_node(next_state)
 	
+	print("NEXT_STATE ", next_state, " ", data)
+	
 	current_state.enter(previous_state_name, data)
 
 func _loadStates() -> void:

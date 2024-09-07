@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gfix1tcv78ax"
+path="res://.godot/imported/Random4.mp3-b52f5c5051cde4283677ccd35dac1d48.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Random/MP3/Random4.mp3"
+dest_files=["res://.godot/imported/Random4.mp3-b52f5c5051cde4283677ccd35dac1d48.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

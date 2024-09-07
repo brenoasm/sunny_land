@@ -1,15 +1,20 @@
-[gd_scene load_steps=16 format=4 uid="uid://gcpkc7hyarlb"]
+[gd_scene load_steps=21 format=4 uid="uid://gcpkc7hyarlb"]
 
-[ext_resource type="PackedScene" uid="uid://bassecsp24nnh" path="res://scenes/Enemies/frog.tscn" id="1_vvjop"]
 [ext_resource type="Texture2D" uid="uid://dp4yqmavv3d1m" path="res://Assets/Packs/Sunnyland/environment/tileset.png" id="2_sfp7b"]
 [ext_resource type="Texture2D" uid="uid://dnbdyfd75miis" path="res://Assets/Packs/Sunnyland/environment/Props/pine.png" id="3_itl1t"]
 [ext_resource type="Texture2D" uid="uid://cvlyrpifyemxg" path="res://Assets/Packs/Sunnyland/environment/Background/back.png" id="3_m2wct"]
 [ext_resource type="PackedScene" uid="uid://2i8jubglwpoi" path="res://scenes/player.tscn" id="3_vm0hs"]
 [ext_resource type="Texture2D" uid="uid://hgubbcf5qfqd" path="res://Assets/Packs/Sunnyland/environment/Background/middle.png" id="4_0dftk"]
-[ext_resource type="PackedScene" uid="uid://chowfia0h5de8" path="res://scenes/gem.tscn" id="7_ehtbo"]
 [ext_resource type="Script" path="res://scripts/Environment/camera.gd" id="8_bfwyy"]
 [ext_resource type="PackedScene" uid="uid://cs5qibjivc3qf" path="res://scenes/General/die_zone.tscn" id="9_qb80i"]
 [ext_resource type="PackedScene" uid="uid://dvg6arprs6dcl" path="res://scenes/UI/score_ui.tscn" id="10_ogt4a"]
+[ext_resource type="PackedScene" uid="uid://dfo0a1ynsrbcm" path="res://scenes/Managers/enemies_manager.tscn" id="10_p6td5"]
+[ext_resource type="PackedScene" uid="uid://b1c5iji4v7ens" path="res://scenes/General/enemy_spawn_point.tscn" id="10_qi64r"]
+[ext_resource type="PackedScene" uid="uid://puje4xr0jfjq" path="res://scenes/Managers/collectables_manager.tscn" id="12_d0q60"]
+[ext_resource type="PackedScene" uid="uid://l7ih332wubi1" path="res://scenes/General/collectable_spawn_point.tscn" id="12_o6ycj"]
+[ext_resource type="PackedScene" uid="uid://dsjfi46bwohbh" path="res://scenes/Managers/game_state_manager.tscn" id="13_28nn5"]
+[ext_resource type="AudioStream" uid="uid://bb23b175nbkbo" path="res://musics/Grasslands Theme.mp3" id="14_v6x15"]
+[ext_resource type="Script" path="res://scripts/Managers/background_music_player_manager.gd" id="15_f6qu7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j30o6"]
 distance = -91.0
@@ -433,6 +438,9 @@ sources/31 = SubResource("TileSetAtlasSource_u8cbb")
 
 [node name="Game" type="Node2D"]
 
+[node name="GameStateManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_28nn5")]
+player = NodePath("../Player")
+
 [node name="Environment" type="Node" parent="."]
 
 [node name="DieZone" parent="Environment" instance=ExtResource("9_qb80i")]
@@ -470,36 +478,66 @@ z_index = -2
 texture = ExtResource("3_m2wct")
 centered = false
 
-[node name="Enemies" type="Node" parent="."]
+[node name="EnemiesManager" parent="." node_paths=PackedStringArray("player", "game_state_manager") instance=ExtResource("10_p6td5")]
+player = NodePath("../Player")
+game_state_manager = NodePath("../GameStateManager")
 
-[node name="Frog" parent="Enemies" instance=ExtResource("1_vvjop")]
-position = Vector2(236, 116)
+[node name="EnemySpawnPoint" parent="EnemiesManager" instance=ExtResource("10_qi64r")]
+position = Vector2(11, 116)
 
-[node name="Frog5" parent="Enemies" instance=ExtResource("1_vvjop")]
-position = Vector2(10, 116)
+[node name="EnemySpawnPoint2" parent="EnemiesManager" instance=ExtResource("10_qi64r")]
+position = Vector2(714, 117)
 
-[node name="Frog2" parent="Enemies" instance=ExtResource("1_vvjop")]
-position = Vector2(309, 118)
+[node name="EnemySpawnPoint3" parent="EnemiesManager" instance=ExtResource("10_qi64r")]
+position = Vector2(583, 117)
+once = true
 
-[node name="Frog3" parent="Enemies" instance=ExtResource("1_vvjop")]
-position = Vector2(408, 117)
+[node name="EnemySpawnPoint4" parent="EnemiesManager" instance=ExtResource("10_qi64r")]
+position = Vector2(455, 116)
 
-[node name="Frog4" parent="Enemies" instance=ExtResource("1_vvjop")]
-position = Vector2(466, 116)
+[node name="EnemySpawnPoint5" parent="EnemiesManager" instance=ExtResource("10_qi64r")]
+position = Vector2(247, 116)
 
-[node name="Collectables" type="Node" parent="."]
+[node name="CollectablesManager" parent="." node_paths=PackedStringArray("player", "game_state_manager") instance=ExtResource("12_d0q60")]
+player = NodePath("../Player")
+game_state_manager = NodePath("../GameStateManager")
 
-[node name="Gem" parent="Collectables" instance=ExtResource("7_ehtbo")]
-position = Vector2(234, 72)
+[node name="CollectableSpawnPoint" parent="CollectablesManager" instance=ExtResource("12_o6ycj")]
+position = Vector2(379, 72)
+already_collected = false
 
-[node name="Gem2" parent="Collectables" instance=ExtResource("7_ehtbo")]
-position = Vector2(309, 72)
+[node name="CollectableSpawnPoint2" parent="CollectablesManager" instance=ExtResource("12_o6ycj")]
+position = Vector2(270, 72)
+already_collected = false
 
-[node name="Gem3" parent="Collectables" instance=ExtResource("7_ehtbo")]
-position = Vector2(162, 109)
+[node name="CollectableSpawnPoint3" parent="CollectablesManager" instance=ExtResource("12_o6ycj")]
+position = Vector2(218, 105)
+already_collected = false
+
+[node name="CollectableSpawnPoint4" parent="CollectablesManager" instance=ExtResource("12_o6ycj")]
+position = Vector2(421, 106)
+already_collected = false
+
+[node name="CollectableSpawnPoint5" parent="CollectablesManager" instance=ExtResource("12_o6ycj")]
+position = Vector2(561, 74)
+already_collected = false
+
+[node name="CollectableSpawnPoint6" parent="CollectablesManager" instance=ExtResource("12_o6ycj")]
+position = Vector2(561, 95)
+already_collected = false
+
+[node name="UI" type="Node" parent="."]
+
+[node name="ScoreUI" parent="UI" node_paths=PackedStringArray("collectables_manager") instance=ExtResource("10_ogt4a")]
+collectables_manager = NodePath("../../CollectablesManager")
 
 [node name="Player" parent="." instance=ExtResource("3_vm0hs")]
 position = Vector2(82, 112)
 
-[node name="ScoreUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_ogt4a")]
-player = NodePath("../Player")
+[node name="BackgroundMusicPlayerManager" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_v6x15")
+volume_db = -10.0
+autoplay = true
+area_mask = 0
+parameters/looping = true
+script = ExtResource("15_f6qu7")

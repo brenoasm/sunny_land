@@ -1,20 +1,20 @@
 extends CharacterBody2D
 class_name Player
 
-@export var movement_speed = 250.0
+@export var movement_speed = 200.0
 @export var jump_movement_speed = 150.0
 @export var jump_velocity = -400.0
 @export var died_jump_velocity = -300.0
-@export var restart_delay = .7
 
 signal enemy_hit(enemy: Enemy)
 signal died()
-signal collected(collectable: Collectable)
+signal finished_dying()
 
 @onready var animation_player: PlayerAnimation = $AnimatedSprite2D
 @onready var player_collision: PlayerCollision = $PhysicsHitbox
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var input: PlayerInput = $Input
+@onready var sound_effects: PlayerSoundEffects = $PlayerSoundEffects
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 

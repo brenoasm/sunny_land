@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bbl1qarjkndd1"
+path="res://.godot/imported/Teleport2.wav-7757d4406ba09c9a0d0950ce315298b8.sample"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Teleport/WAV/Teleport2.wav"
+dest_files=["res://.godot/imported/Teleport2.wav-7757d4406ba09c9a0d0950ce315298b8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

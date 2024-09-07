@@ -12,7 +12,7 @@ func _ready() -> void:
 	frog = owner as Frog
 	assert(frog != null, "A FrogState must have a Frog as owner.")
 	
-	frog.died.connect(_on_died)
-
-func _on_died() -> void:
+	frog.started_dying.connect(_on_started_dying)
+	
+func _on_started_dying() -> void:
 	finished.emit(DYING, {})

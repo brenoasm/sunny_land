@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b35fsnshwffdu"
+path="res://.godot/imported/Hit4.wav-c713550c683802ebb47874c5ab6f43bf.sample"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Hit/WAV/Hit4.wav"
+dest_files=["res://.godot/imported/Hit4.wav-c713550c683802ebb47874c5ab6f43bf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://2i8jubglwpoi"]
+[gd_scene load_steps=43 format=3 uid="uid://2i8jubglwpoi"]
 
 [ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_1ejx3"]
 [ext_resource type="Texture2D" uid="uid://buvo8nxgeb71a" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-1.png" id="2_6gqi5"]
@@ -32,6 +32,12 @@
 [ext_resource type="Script" path="res://scripts/Player/States/player_dying.gd" id="26_wvaxf"]
 [ext_resource type="Script" path="res://scripts/Player/player_camera_visibility_notifier.gd" id="31_hscjk"]
 [ext_resource type="Script" path="res://scripts/Player/player_input.gd" id="32_ry7qn"]
+[ext_resource type="Script" path="res://scripts/Player/player_sound_effects.gd" id="33_vix47"]
+[ext_resource type="AudioStream" uid="uid://bnm7rtrgeu8uj" path="res://sound_effects/Sound effects Mini Pack1.5/Jump/MP3/Jump1.mp3" id="34_p5ph3"]
+[ext_resource type="AudioStream" uid="uid://cy17mec2bswyp" path="res://sound_effects/Sound effects Mini Pack1.5/Jump/MP3/Jump2.mp3" id="35_8hrb0"]
+[ext_resource type="AudioStream" uid="uid://bilhqhjlexkrx" path="res://sound_effects/Sound effects Mini Pack1.5/Hit/MP3/Hit1.mp3" id="36_8kr2d"]
+[ext_resource type="AudioStream" uid="uid://i6m683bsrek2" path="res://sound_effects/Sound effects Mini Pack1.5/Hit/MP3/Hit.mp3" id="36_76euv"]
+[ext_resource type="AudioStream" uid="uid://3ueycvk8ihu8" path="res://sound_effects/Sound effects Mini Pack1.5/Hit/MP3/Hit2.mp3" id="38_56fa4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wnecl"]
 radius = 9.0
@@ -201,6 +207,13 @@ script = ExtResource("31_hscjk")
 [node name="Input" type="Node2D" parent="."]
 script = ExtResource("32_ry7qn")
 
+[node name="PlayerSoundEffects" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
+script = ExtResource("33_vix47")
+jump_sound = Array[AudioStream]([ExtResource("34_p5ph3"), ExtResource("35_8hrb0")])
+hurt_sound = Array[AudioStream]([ExtResource("36_8kr2d"), ExtResource("36_76euv"), ExtResource("38_56fa4")])
+
 [connection signal="body_entered" from="OffensiveArea" to="OffensiveArea" method="_on_body_entered"]
 [connection signal="area_entered" from="CollectableArea" to="CollectableArea" method="_on_area_entered"]
 [connection signal="screen_exited" from="CameraVisibilityNotifier" to="CameraVisibilityNotifier" method="_on_screen_exited"]
+[connection signal="finished" from="PlayerSoundEffects" to="PlayerSoundEffects" method="_on_finished"]

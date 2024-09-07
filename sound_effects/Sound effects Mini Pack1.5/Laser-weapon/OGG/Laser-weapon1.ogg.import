@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://comwm2acpqdee"
+path="res://.godot/imported/Laser-weapon1.ogg-2e338a3dfaa5f30356255d7e06e4e17b.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Laser-weapon/OGG/Laser-weapon1.ogg"
+dest_files=["res://.godot/imported/Laser-weapon1.ogg-2e338a3dfaa5f30356255d7e06e4e17b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

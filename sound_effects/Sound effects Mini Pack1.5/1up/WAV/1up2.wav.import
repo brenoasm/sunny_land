@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c11pd01or28kr"
+path="res://.godot/imported/1up2.wav-93443921523862cbd425e41ed9245ea4.sample"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/1up/WAV/1up2.wav"
+dest_files=["res://.godot/imported/1up2.wav-93443921523862cbd425e41ed9245ea4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

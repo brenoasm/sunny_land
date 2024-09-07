@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3h3r7isixlia"
+path="res://.godot/imported/Hit4.mp3-55dd5165b75bc0adaed054eef86887b2.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Hit/MP3/Hit4.mp3"
+dest_files=["res://.godot/imported/Hit4.mp3-55dd5165b75bc0adaed054eef86887b2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

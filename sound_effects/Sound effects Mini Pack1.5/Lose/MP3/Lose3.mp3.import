@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://v742u4eqgh1l"
+path="res://.godot/imported/Lose3.mp3-665d82aea64d22096cae5e3045f2baec.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Lose/MP3/Lose3.mp3"
+dest_files=["res://.godot/imported/Lose3.mp3-665d82aea64d22096cae5e3045f2baec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

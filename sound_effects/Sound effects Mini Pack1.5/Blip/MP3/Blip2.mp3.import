@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://br8ec5cgqrgin"
+path="res://.godot/imported/Blip2.mp3-e2c2c06f5493bd4f5ef784692dacafcd.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/Blip/MP3/Blip2.mp3"
+dest_files=["res://.godot/imported/Blip2.mp3-e2c2c06f5493bd4f5ef784692dacafcd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

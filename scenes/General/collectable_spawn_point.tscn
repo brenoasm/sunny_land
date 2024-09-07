@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://l7ih332wubi1"]
+
+[ext_resource type="Script" path="res://scripts/General/collectable_spawn_point.gd" id="1_8qut5"]
+[ext_resource type="PackedScene" uid="uid://l66ofcgc21wt" path="res://scenes/General/spawn_point.tscn" id="1_rakoq"]
+[ext_resource type="PackedScene" uid="uid://chowfia0h5de8" path="res://scenes/Collectables/gem.tscn" id="3_bnm0x"]
+
+[node name="CollectableSpawnPoint" instance=ExtResource("1_rakoq")]
+collision_layer = 32
+script = ExtResource("1_8qut5")
+collectable_scene = ExtResource("3_bnm0x")
+spawn_delay = 0.0

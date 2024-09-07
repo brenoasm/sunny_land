@@ -8,7 +8,5 @@ func _ready() -> void:
 	
 	player = owner
 
-func _on_screen_exited() -> void:
-	await get_tree().create_timer(player.restart_delay).timeout
-	
-	GameManager.restart_scene()
+func _on_screen_exited() -> void:	
+	player.finished_dying.emit()

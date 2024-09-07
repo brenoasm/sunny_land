@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tyvnvlqsp43p"
+path="res://.godot/imported/1up3.mp3-dbdb4eed336a509737e43e7c8acb221b.mp3str"
+
+[deps]
+
+source_file="res://sound_effects/Sound effects Mini Pack1.5/1up/MP3/1up3.mp3"
+dest_files=["res://.godot/imported/1up3.mp3-dbdb4eed336a509737e43e7c8acb221b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

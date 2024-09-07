@@ -11,3 +11,5 @@ func _on_animation_finished() -> void:
 	frog.animation_player.animation_finished.disconnect(_on_animation_finished)
 	
 	frog.queue_free()
+	
+	frog.died.emit()
