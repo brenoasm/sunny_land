@@ -9,6 +9,6 @@ func _ready() -> void:
 	player = owner
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Enemy and player.player_state_machine.can_hit_enemy():
+	if body is Enemy and body.can_be_hit and player.player_state_machine.can_hit_enemy():
 		player.enemy_hit.emit(body)
 		body.kill()

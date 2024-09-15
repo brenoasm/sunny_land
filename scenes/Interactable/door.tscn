@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu2eqxx6fp3n7"]
+
+[ext_resource type="Script" path="res://scripts/Interactable/door.gd" id="1_4b62e"]
+[ext_resource type="Texture2D" uid="uid://bkjjpevxwruim" path="res://Assets/Packs/Sunnyland/environment/Props/door.png" id="2_b0bk7"]
+[ext_resource type="Texture2D" uid="uid://dd347nox25l1g" path="res://Assets/Packs/Sunnyland/environment/Props/door-opened.png" id="2_urcur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc0k4"]
+size = Vector2(18, 21)
+
+[node name="Door" type="Area2D"]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_4b62e")
+active_sprite = ExtResource("2_urcur")
+inactive_sprite = ExtResource("2_b0bk7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b0bk7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mc0k4")

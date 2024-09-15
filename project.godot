@@ -40,6 +40,8 @@ folder_colors={
 2d_physics/layer_4="Player"
 2d_physics/layer_5="EnemySpawnPoint"
 2d_physics/layer_6="CollectableSpawnPoint"
+2d_physics/layer_7="Interactable"
+2d_physics/layer_8="Climbable"
 
 [rendering]
 

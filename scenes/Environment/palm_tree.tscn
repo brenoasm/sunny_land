@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwwcp8xyxb50t"]
+
+[ext_resource type="Texture2D" uid="uid://d20yafc26kh5v" path="res://Assets/Packs/Sunnyland/environment/Props/palm.png" id="2_jrci6"]
+[ext_resource type="Script" path="res://scripts/Environment/climbable.gd" id="3_pyoup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcwle"]
+size = Vector2(3, 111)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ja76n"]
+a = Vector2(-8, -30)
+b = Vector2(14, -30)
+
+[node name="PalmTree" type="Sprite2D"]
+texture = ExtResource("2_jrci6")
+
+[node name="Trunk" type="Area2D" parent="." node_paths=PackedStringArray("limit_area")]
+collision_layer = 128
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_pyoup")
+limit_area = NodePath("../LimitArea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trunk"]
+position = Vector2(2, 27.5)
+shape = SubResource("RectangleShape2D_qcwle")
+
+[node name="LimitArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitArea"]
+position = Vector2(-1, 8)
+shape = SubResource("SegmentShape2D_ja76n")

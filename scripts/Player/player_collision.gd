@@ -11,6 +11,9 @@ const COLLECTABLE_COLLISION_LAYER = 3
 const ENEMY_COLLISION_LAYER = 2
 const TERRAIN_COLLISION_LAYER = 1
 
+func _ready() -> void:
+	player.game_state_manager.game_state_changed.connect(_on_game_state_changed)
+
 func enable_enemy_collision() -> void:
 	offensive_area.set_collision_mask_value(ENEMY_COLLISION_LAYER, true)
 	
@@ -46,3 +49,12 @@ func disable_collectable_collision() -> void:
 	
 	if enableLog:
 		print("Player to Collectable collision disabled")
+
+func _on_game_state_changed(game_state: GameStateManager.GameState) -> void:
+	match game_state:
+		GameStateManager.GameState.LEVEL_WIN:
+			disable_enemy_collision()
+			disable_collectable_collision()
+		GameStateManager.GameState.GAME_OVER:
+			player.player_collision.disable_terrain_collision()
+			player.player_collision.disable_collectable_collision()

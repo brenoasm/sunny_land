@@ -3,8 +3,12 @@ class_name Player
 
 @export var movement_speed = 200.0
 @export var jump_movement_speed = 150.0
-@export var jump_velocity = -400.0
+@export var jump_velocity = -350.0
 @export var died_jump_velocity = -300.0
+@export var floor_check_delay: float = 1
+@export var climb_speed: float = 2
+
+@export var game_state_manager: GameStateManager
 
 signal enemy_hit(enemy: Enemy)
 signal died()
@@ -15,6 +19,8 @@ signal finished_dying()
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
 @onready var input: PlayerInput = $Input
 @onready var sound_effects: PlayerSoundEffects = $PlayerSoundEffects
+@onready var interact_area: PlayerInteraction = $PlayerInteractArea
+@onready var climbable_area: PlayerClimbableArea = $PlayerClimbableArea
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 

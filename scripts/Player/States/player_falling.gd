@@ -14,7 +14,7 @@ func physics_update(delta: float) -> void:
 func enter(previous_state: String, data: Dictionary) -> void:
 	super(previous_state, data)
 	
-	player.animation_player.playFallingAnimation()
+	player.animation_player.play_falling_animation()
 	
 	player.enemy_hit.connect(_on_enemy_hit)
 

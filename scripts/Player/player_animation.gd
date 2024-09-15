@@ -6,30 +6,59 @@ enum PlayerAnimations {
 	Jumping,
 	Idle,
 	Dying,
-	Moving
+	Moving,
+	Climbing,
+	Crouching,
 }
 
-var currentAnimation: PlayerAnimations = PlayerAnimations.Idle
+var current_animation: PlayerAnimations = PlayerAnimations.Idle
+var current_frame = 0
+var total_frames = 0
+
+func reset_current_frame() -> void:
+	current_frame = 0
 	
-func playFallingAnimation() -> void:
-	currentAnimation = PlayerAnimations.Falling
+func play_falling_animation() -> void:
+	current_animation = PlayerAnimations.Falling
 	play("Falling")
 	
-func playJumpingAnimation() -> void:
-	currentAnimation = PlayerAnimations.Jumping
+func play_jumping_animation() -> void:
+	current_animation = PlayerAnimations.Jumping
 	play("Jumping")
 	
-func playIdleAnimation() -> void:
-	currentAnimation = PlayerAnimations.Idle
+func play_idle_animation() -> void:
+	current_animation = PlayerAnimations.Idle
 	play("Idle")
 	
-func playMovingAnimation() -> void:
-	currentAnimation = PlayerAnimations.Moving
+func play_moving_animation() -> void:
+	current_animation = PlayerAnimations.Moving
 	play("Moving")
 	
-func playDyingAnimation() -> void:
-	currentAnimation = PlayerAnimations.Dying
+func play_dying_animation() -> void:
+	current_animation = PlayerAnimations.Dying
 	play("Dying")
+	
+func play_climbing_animation() -> void:
+	current_animation = PlayerAnimations.Climbing
+	
+	animation = "Climbing"
+	
+	stop()
+	
+	total_frames = sprite_frames.get_frame_count("Climbing")
+	
+	var new_frame = current_frame + 1
+	
+	if new_frame > total_frames:
+		new_frame = 0
+		
+	current_frame = new_frame
+	
+	frame = current_frame
+	
+func play_crouching_animation() -> void:
+	current_animation = PlayerAnimations.Crouching
+	play("Crouching")
 
 func applyAlpha(a: float) -> void:
 	self_modulate.a = a

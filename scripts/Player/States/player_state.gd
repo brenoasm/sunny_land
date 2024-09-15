@@ -7,11 +7,14 @@ const IDLE = "Idle"
 const JUMPING = "Jumping"
 const FALLING = "Falling"
 const DYING = "Dying"
+const CLIMBING = "Climbing"
+const CROUCHING = "Crouching"
 
 var player: Player
 var state_machine: PlayerStateMachine
 
 var timer: float = 0
+var apply_gravity = true
 
 func _ready() -> void:
 	await owner.ready
@@ -26,6 +29,9 @@ func update(delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	if not apply_gravity:
+		return
+		
 	if player.velocity.y > 0 and state_machine.current_state is not PlayerFalling:
 		finished.emit(FALLING, {})
 	elif player.velocity.y < 0 and state_machine.current_state is not PlayerJumping:
@@ -33,10 +39,11 @@ func physics_update(delta: float) -> void:
 		
 	if not player.is_on_floor():
 		player.input.apply_y_velocity(player.velocity.y + player.gravity * delta)
-				
 	
 func enter(previous_state: String, data: Dictionary) -> void:
 	timer = 0
+	
+	apply_gravity = true
 	
 	if state_machine.log_state_transition:
 		print("Entering " + self.name + " state")

@@ -11,6 +11,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var target_position: Callable
 var id: float
+var disabled = false
+var can_be_hit = true
 
 func _ready() -> void:
 	id = RandomNumberGenerator.new().randf_range(0, 100)
@@ -49,5 +51,5 @@ func get_target_direction() -> int:
 	
 	return jump_direction
 
-func flip(value: float) -> void:
+func flip(_value: float) -> void:
 	pass

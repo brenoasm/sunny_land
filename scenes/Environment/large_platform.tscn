@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://be1nt5j02ghht"]
+
+[ext_resource type="PackedScene" uid="uid://bsurun6ei2e14" path="res://scenes/Environment/platform.tscn" id="1_ewgta"]
+[ext_resource type="Texture2D" uid="uid://c0qod4rcwhtg0" path="res://Assets/Packs/Sunnyland/environment/Props/platform-long.png" id="2_gamv1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ko7c4"]
+size = Vector2(30, 14)
+
+[node name="LargePlatform" instance=ExtResource("1_ewgta")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_gamv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_ko7c4")

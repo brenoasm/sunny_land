@@ -35,6 +35,11 @@ func _on_spawn_point_exited(spawn_point: EnemySpawnPoint) -> void:
 	spawn_point.destroy()
 
 func _on_game_state_changed(game_state: GameStateManager.GameState) -> void:
-	if game_state == GameStateManager.GameState.GAME_OVER:
-		control_area.area_entered.disconnect(_on_spawn_point_entered)
-		control_area.area_exited.disconnect(_on_spawn_point_exited)
+	match game_state:
+		GameStateManager.GameState.GAME_OVER:
+			control_area.area_entered.disconnect(_on_spawn_point_entered)
+			control_area.area_exited.disconnect(_on_spawn_point_exited)
+		GameStateManager.GameState.LEVEL_WIN:
+			for child in get_children():
+				if child is EnemySpawnPoint and child.spawned_enemy != null:
+					child.spawned_enemy.disabled = true

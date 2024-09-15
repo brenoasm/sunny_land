@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://hy0toqrac3yn"]
+
+[ext_resource type="Script" path="res://scripts/Environment/climbable.gd" id="1_uxyrr"]
+
+[node name="Climbable" type="Area2D"]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_uxyrr")

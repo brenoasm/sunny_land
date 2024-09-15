@@ -10,6 +10,9 @@ var dying = false
 
 func kill() -> void:
 	dying = true
+	frog_collision.disable_collision()
+	frog_collision.disable_player_collision()
+	can_be_hit = false
 	started_dying.emit()
 
 func _on_offensive_area_body_entered(body: Node2D) -> void:

@@ -11,7 +11,7 @@ func enter(previous_state: String, data: Dictionary) -> void:
 	
 	var enemy_hit = data.get('hit')
 	
-	player.animation_player.playJumpingAnimation()
+	player.animation_player.play_jumping_animation()
 	
 	if enemy_hit:
 		player.sound_effects.play_enemy_hit_sound()

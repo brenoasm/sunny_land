@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://clbo8a65jcskk"]
+
+[ext_resource type="Script" path="res://scripts/Interactable/crank.gd" id="1_6x04s"]
+[ext_resource type="Texture2D" uid="uid://dhhyeoex48iu8" path="res://Assets/Packs/Sunnyland/environment/Props/crank-up.png" id="1_xg50r"]
+[ext_resource type="Texture2D" uid="uid://h6yxqbrffncb" path="res://Assets/Packs/Sunnyland/environment/Props/crank-down.png" id="2_hyye7"]
+[ext_resource type="AudioStream" uid="uid://po7wwx85g1wm" path="res://sound_effects/Sound effects Mini Pack1.5/Blip/MP3/Blip3.mp3" id="4_pd717"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hp1d"]
+size = Vector2(16.25, 14.5)
+
+[node name="Crank" type="Area2D"]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_6x04s")
+active_sprite = ExtResource("2_hyye7")
+inactive_sprite = ExtResource("1_xg50r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xg50r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.875, 0.75)
+shape = SubResource("RectangleShape2D_3hp1d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pd717")
+bus = &"Sfx"

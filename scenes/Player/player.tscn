@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://2i8jubglwpoi"]
+[gd_scene load_steps=50 format=3 uid="uid://2i8jubglwpoi"]
 
 [ext_resource type="Script" path="res://scripts/Player/player.gd" id="1_1ejx3"]
 [ext_resource type="Texture2D" uid="uid://buvo8nxgeb71a" path="res://Assets/Packs/Sunnyland/sprites/player/idle/player-idle-1.png" id="2_6gqi5"]
@@ -29,15 +29,21 @@
 [ext_resource type="Script" path="res://scripts/Player/States/player_jumping.gd" id="24_6bulw"]
 [ext_resource type="Script" path="res://scripts/Player/player_collectable_area.gd" id="24_ei36t"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_falling.gd" id="25_g30nj"]
+[ext_resource type="Script" path="res://scripts/Player/player_interaction.gd" id="25_uofy8"]
+[ext_resource type="Script" path="res://scripts/Player/player_climbable_area.gd" id="26_g813b"]
 [ext_resource type="Script" path="res://scripts/Player/States/player_dying.gd" id="26_wvaxf"]
 [ext_resource type="Script" path="res://scripts/Player/player_camera_visibility_notifier.gd" id="31_hscjk"]
 [ext_resource type="Script" path="res://scripts/Player/player_input.gd" id="32_ry7qn"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_climbing.gd" id="33_n46td"]
 [ext_resource type="Script" path="res://scripts/Player/player_sound_effects.gd" id="33_vix47"]
 [ext_resource type="AudioStream" uid="uid://bnm7rtrgeu8uj" path="res://sound_effects/Sound effects Mini Pack1.5/Jump/MP3/Jump1.mp3" id="34_p5ph3"]
+[ext_resource type="Script" path="res://scripts/Player/States/player_crouching.gd" id="34_pttvr"]
 [ext_resource type="AudioStream" uid="uid://cy17mec2bswyp" path="res://sound_effects/Sound effects Mini Pack1.5/Jump/MP3/Jump2.mp3" id="35_8hrb0"]
 [ext_resource type="AudioStream" uid="uid://bilhqhjlexkrx" path="res://sound_effects/Sound effects Mini Pack1.5/Hit/MP3/Hit1.mp3" id="36_8kr2d"]
 [ext_resource type="AudioStream" uid="uid://i6m683bsrek2" path="res://sound_effects/Sound effects Mini Pack1.5/Hit/MP3/Hit.mp3" id="36_76euv"]
 [ext_resource type="AudioStream" uid="uid://3ueycvk8ihu8" path="res://sound_effects/Sound effects Mini Pack1.5/Hit/MP3/Hit2.mp3" id="38_56fa4"]
+[ext_resource type="AudioStream" uid="uid://b41wx8ewpohof" path="res://sound_effects/Sound effects Mini Pack1.5/Coins/MP3/Coin.mp3" id="39_b4oys"]
+[ext_resource type="AudioStream" uid="uid://b3r1e4n4vbqjb" path="res://sound_effects/Sound effects Mini Pack1.5/Coins/MP3/Coin2.mp3" id="40_onv04"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wnecl"]
 radius = 9.0
@@ -144,9 +150,14 @@ size = Vector2(13.125, 14.6394)
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8fi7"]
 radius = 11.0454
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tl3te"]
+size = Vector2(8, 11)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 2
 collision_layer = 8
 script = ExtResource("1_1ejx3")
+jump_velocity = -300.0
 
 [node name="PhysicsHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.84)
@@ -157,11 +168,12 @@ script = ExtResource("2_kycny")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_be77h")
-animation = &"Dying"
+animation = &"Crouching"
 autoplay = "Idle"
 script = ExtResource("21_khnir")
 
 [node name="OffensiveArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -173,6 +185,7 @@ scale = Vector2(1.06667, 0.322857)
 shape = SubResource("RectangleShape2D_yqxor")
 
 [node name="CollectableArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 monitorable = false
@@ -182,6 +195,30 @@ script = ExtResource("24_ei36t")
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_e8fi7")
 debug_color = Color(0.203001, 0.631424, 0.320713, 0.42)
+
+[node name="PlayerInteractArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 64
+monitorable = false
+script = ExtResource("25_uofy8")
+
+[node name="InteractHitbox" type="CollisionShape2D" parent="PlayerInteractArea"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_e8fi7")
+debug_color = Color(0.203001, 0.631424, 0.320713, 0.42)
+
+[node name="PlayerClimbableArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+script = ExtResource("26_g813b")
+
+[node name="ClimbHitbox" type="CollisionShape2D" parent="PlayerClimbableArea"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_tl3te")
+debug_color = Color(0.703142, 0.4891, 0.0846322, 0.42)
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("21_cwfjb")
@@ -201,19 +238,31 @@ script = ExtResource("24_6bulw")
 [node name="Dying" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("26_wvaxf")
 
+[node name="Climbing" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("33_n46td")
+
+[node name="Crouching" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("34_pttvr")
+
 [node name="CameraVisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 script = ExtResource("31_hscjk")
 
 [node name="Input" type="Node2D" parent="."]
 script = ExtResource("32_ry7qn")
 
-[node name="PlayerSoundEffects" type="AudioStreamPlayer2D" parent="."]
+[node name="PlayerSoundEffects" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+bus = &"Sfx"
 script = ExtResource("33_vix47")
 jump_sound = Array[AudioStream]([ExtResource("34_p5ph3"), ExtResource("35_8hrb0")])
 hurt_sound = Array[AudioStream]([ExtResource("36_8kr2d"), ExtResource("36_76euv"), ExtResource("38_56fa4")])
+collect_sound = Array[AudioStream]([ExtResource("39_b4oys"), ExtResource("40_onv04")])
 
 [connection signal="body_entered" from="OffensiveArea" to="OffensiveArea" method="_on_body_entered"]
 [connection signal="area_entered" from="CollectableArea" to="CollectableArea" method="_on_area_entered"]
+[connection signal="area_entered" from="PlayerInteractArea" to="PlayerInteractArea" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerInteractArea" to="PlayerInteractArea" method="_on_area_exited"]
+[connection signal="area_entered" from="PlayerClimbableArea" to="PlayerClimbableArea" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerClimbableArea" to="PlayerClimbableArea" method="_on_area_exited"]
 [connection signal="screen_exited" from="CameraVisibilityNotifier" to="CameraVisibilityNotifier" method="_on_screen_exited"]
 [connection signal="finished" from="PlayerSoundEffects" to="PlayerSoundEffects" method="_on_finished"]

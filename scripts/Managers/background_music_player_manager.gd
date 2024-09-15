@@ -1,2 +1,0 @@
-extends AudioStreamPlayer2D
-class_name BackgroundMusicPlayerManager
