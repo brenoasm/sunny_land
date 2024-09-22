@@ -3,8 +3,9 @@ class_name GameStateManager
 
 signal game_state_changed(game_state: GameState)
 
-@export var player: Player
+@export var player: Player 
 @export var restart_delay = .7
+@export var next_level: PackedScene
 
 enum GameState {
 	PLAYING,
@@ -33,5 +34,5 @@ func win_level() -> void:
 	
 	game_state_changed.emit(current_game_state)
 
-func next_level() -> void:
-	GameManager.restart_scene()
+func level_win() -> void:
+	GameManager.win_level(next_level)

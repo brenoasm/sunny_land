@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxxmlk64hk2px"]
+
+[ext_resource type="Texture2D" uid="uid://bvnjmdnp5jit7" path="res://Assets/Packs/Sunnyland/environment/Props/face-block.png" id="1_cg63k"]
+[ext_resource type="Script" path="res://scripts/Environment/face_block.gd" id="1_payos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wylef"]
+size = Vector2(30, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l3kx"]
+size = Vector2(26, 3.5)
+
+[node name="FaceBlock" type="StaticBody2D"]
+script = ExtResource("1_payos")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cg63k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wylef")
+
+[node name="OffensiveArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OffensiveArea"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_7l3kx")
+debug_color = Color(0.855335, 0.346685, 0.328711, 0.42)

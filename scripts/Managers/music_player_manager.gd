@@ -25,7 +25,7 @@ func _on_game_state_changed(game_state: GameStateManager.GameState):
 
 func _on_finished() -> void:
 	if game_state_manager.current_game_state == GameStateManager.GameState.LEVEL_WIN:
-		game_state_manager.next_level()
+		game_state_manager.level_win()
 		
 		return
 		
